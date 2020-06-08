@@ -36,7 +36,7 @@ class Parcel:
         """
         if not ParcelType.is_valid(parcel_type):
             raise ValueError("Invalid parcel_type provided")
-        elif not type(address) is not str and address is not None:
+        elif type(address) is str and address is not None:
             raise ValueError("address must be a string or None")
         elif type(payload) is not bytes or len(payload) == 0:
             raise ValueError("payload must be a bytes object of non-zero length")

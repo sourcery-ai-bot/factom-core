@@ -94,13 +94,13 @@ class DirectoryBlockState(Message):
 
         entry_block_count, data = struct.unpack(">I", data[:4])[0], data[4:]
         entry_blocks = []
-        for i in range(entry_block_count):
+        for _ in range(entry_block_count):
             entry_block, data = EntryBlock.unmarshal_with_remainder(data)
             entry_blocks.append(entry_block)
 
         entry_count, data = struct.unpack(">I", data[:4])[0], data[4:]
         entries = []
-        for i in range(entry_count):
+        for _ in range(entry_count):
             entry_size, data = struct.unpack(">I", data[:4])[0], data[4:]
             entry, data = Entry.unmarshal(data[:entry_size]), data[entry_size:]
             entries.append(entry)

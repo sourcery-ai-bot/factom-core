@@ -101,7 +101,7 @@ class EntryBlockBody:
         # Entry hashes are listed in order, with a minute marker following what minute those entries were in
         entry_hashes = {}
         current_minute_entries = []
-        for i in range(entry_count):
+        for _ in range(entry_count):
             entry_hash, data = data[:32], data[32:]
             if entry_hash[:-1] == bytes(31) and entry_hash[-1] <= 10:
                 entry_hashes[entry_hash[-1]] = current_minute_entries
@@ -118,9 +118,7 @@ class EntryBlockBody:
         Creates an returns an EntryBlockHeader for this body object, given the specified contextual
         parameters.
         """
-        entry_count = 0
-        for hashes in self.entry_hashes.values():
-            entry_count += len(hashes)
+        entry_count = sum(len(hashes) for hashes in self.entry_hashes.values())
         return EntryBlockHeader(
             chain_id=chain_id,
             body_mr=self.merkle_root,

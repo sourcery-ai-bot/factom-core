@@ -93,7 +93,7 @@ class AdminBlockBody:
     def unmarshal_with_remainder(cls, raw: bytes, message_count: int):
         data = raw
         messages = []
-        for i in range(message_count):
+        for _ in range(message_count):
             admin_id, data = data[0], data[1:]
             msg = None
             if admin_id == MinuteNumber.ADMIN_ID:  # Deprecated in M2
@@ -167,8 +167,7 @@ class AdminBlockBody:
 
             elif admin_id <= 0x0E:
                 msg = admin_id
-                print(f"Unsupported admin message type {admin_id} found")
-
+                print(f'Unsupported admin message type {msg} found')
             if msg is not None:
                 messages.append(msg)
 
@@ -240,7 +239,7 @@ class AdminBlock:
         header, data = AdminBlockHeader.unmarshal_with_remainder(raw)
 
         messages = []
-        for i in range(header.message_count):
+        for _ in range(header.message_count):
             admin_id, data = data[0], data[1:]
             msg = None
             if admin_id == MinuteNumber.ADMIN_ID:  # Deprecated in M2
@@ -314,7 +313,11 @@ class AdminBlock:
 
             elif admin_id <= 0x0E:
                 msg = admin_id
-                print("Unsupported admin message type {} found at Admin Block {}".format(admin_id, header.height))
+                print(
+                    "Unsupported admin message type {} found at Admin Block {}".format(
+                        msg, header.height
+                    )
+                )
 
             if msg is not None:
                 messages.append(msg)

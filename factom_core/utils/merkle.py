@@ -7,7 +7,7 @@ def get_merkle_root(hashes: list) -> bytes:
 
 
 def build_merkle_tree(hashes: list):
-    if len(hashes) == 0 or len(hashes) == 1:
+    if len(hashes) in [0, 1]:
         return hashes
 
     next_level = []

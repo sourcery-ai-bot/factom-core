@@ -88,25 +88,25 @@ class FactoidTransaction:
         ec_purchase_count, data = ord(data[:1]), data[1:]
 
         inputs = []
-        for i in range(input_count):
+        for _ in range(input_count):
             value, data = varint.decode(data)
             fct_address, data = data[:32], data[32:]
             inputs.append({"value": value, "fct_address": fct_address})
 
         outputs = []
-        for i in range(output_count):
+        for _ in range(output_count):
             value, data = varint.decode(data)
             fct_address, data = data[:32], data[32:]
             outputs.append({"value": value, "fct_address": fct_address})
 
         ec_purchases = []
-        for i in range(ec_purchase_count):
+        for _ in range(ec_purchase_count):
             value, data = varint.decode(data)
             ec_public_key, data = data[:32], data[32:]
             ec_purchases.append({"value": value, "ec_public_key": ec_public_key})
 
         rcds = primitives.FullSignatureList()
-        for i in range(input_count):
+        for _ in range(input_count):
             data = data[1:]  # skip 1 byte version number, always 0x01 for now
             signature, data = primitives.FullSignature.unmarshal(data[:96]), data[96:]
             rcds.append(signature)

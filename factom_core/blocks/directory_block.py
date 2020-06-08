@@ -125,7 +125,7 @@ class DirectoryBlockBody:
         assert factoid_block_chain_id == factom_core.blocks.FactoidBlockHeader.CHAIN_ID
         factoid_block_keymr, data = data[:32], data[32:]
         entry_blocks = []
-        for i in range(block_count - 3):
+        for _ in range(block_count - 3):
             entry_block_chain_id, data = data[:32], data[32:]
             entry_block_keymr, data = data[:32], data[32:]
             entry_blocks.append({"chain_id": entry_block_chain_id, "keymr": entry_block_keymr})

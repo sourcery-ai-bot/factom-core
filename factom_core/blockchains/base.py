@@ -64,9 +64,7 @@ class Blockchain(BaseBlockchain):
         """
         if len(self.vms) == 0:
             return 0
-        v = 0
-        for b in h:
-            v += b
+        v = sum(h)
         return v % len(self.vms)
 
     def seal_minute(self) -> None:

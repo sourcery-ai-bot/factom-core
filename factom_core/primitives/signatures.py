@@ -41,7 +41,7 @@ class FullSignatureList(list):
     def unmarshal(cls, raw: bytes):
         length, data = struct.unpack(">I", raw[:4])[0], raw[4:]
         signatures = []
-        for i in range(length):
+        for _ in range(length):
             signature, data = FullSignature.unmarshal(data[:96]), data[96:]
             signatures.append(signature)
         assert len(data) == 0, "Extra bytes remaining!"

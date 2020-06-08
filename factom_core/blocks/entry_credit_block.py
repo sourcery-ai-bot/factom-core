@@ -123,7 +123,7 @@ class EntryCreditBlockBody:
         data = raw
         objects = {}  # map of minute --> objects array
         current_minute_objects = []
-        for i in range(object_count):
+        for _ in range(object_count):
             ecid, data = data[0], data[1:]
             if ecid == 0x00:
                 server_index, data = data[0], data[1:]

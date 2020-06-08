@@ -512,7 +512,7 @@ class AddFederatedServerBitcoinAnchorKey(AdminMessage):
 
     def __post_init__(self):
         assert len(self.chain_id) == 32, "chain_id must be a bytes object of length 32"
-        assert self.hash_type == 0 or self.hash_type == 1, "hash_type must be 0 (p2pkh) or 1 (p2sh)"
+        assert self.hash_type in [0, 1], "hash_type must be 0 (p2pkh) or 1 (p2sh)"
         assert 0 <= self.priority <= 255, "priority must be in range(0, 256)"
         assert len(self.public_key_hash) == 20, "public_key_hash must be a bytes object of length 20"
 

@@ -121,8 +121,7 @@ class FactomdLevelDB:
         raw = sub_db.get(lookup_hash)
         if raw is None:
             return None
-        block = blocks.AdminBlock.unmarshal(raw)
-        return block
+        return blocks.AdminBlock.unmarshal(raw)
 
     def get_admin_block_head(self) -> Union[blocks.AdminBlock, None]:
         prev_hash = self.get_chain_head(blocks.AdminBlockHeader.CHAIN_ID)
@@ -158,8 +157,7 @@ class FactomdLevelDB:
         raw = sub_db.get(keymr)
         if raw is None:
             return None
-        block = blocks.FactoidBlock.unmarshal(raw)
-        return block
+        return blocks.FactoidBlock.unmarshal(raw)
 
     def get_factoid_block_head(self) -> Union[blocks.FactoidBlock, None]:
         prev_keymr = self.get_chain_head(blocks.FactoidBlockHeader.CHAIN_ID)
@@ -195,8 +193,7 @@ class FactomdLevelDB:
         raw = sub_db.get(header_hash)
         if raw is None:
             return None
-        block = blocks.EntryCreditBlock.unmarshal(raw)
-        return block
+        return blocks.EntryCreditBlock.unmarshal(raw)
 
     def get_entry_credit_block_head(self) -> Union[blocks.EntryCreditBlock, None]:
         prev_hash = self.get_chain_head(blocks.EntryCreditBlockHeader.CHAIN_ID)
@@ -223,8 +220,7 @@ class FactomdLevelDB:
         raw = sub_db.get(keymr)
         if raw is None:
             return None
-        block = blocks.EntryBlock.unmarshal(raw)
-        return block
+        return blocks.EntryBlock.unmarshal(raw)
 
     def get_entry_block_head(self, chain_id: bytes) -> Union[blocks.EntryBlock, None]:
         prev_keymr = self.get_chain_head(chain_id)
